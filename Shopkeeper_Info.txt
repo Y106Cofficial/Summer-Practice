@@ -1,0 +1,9 @@
+Name:Nikita,SecondName:Ilyin,Speacialization:BerryPicker,Strawberries:23,Raspberries:12,Blackberries:18,PStrawberries:1.2,PRaspberries:0.95,PBlackberries:1.45
+Name:Roman,SecondName:Tyshkevich,Speacialization:Fisherman,Catfish:12,Pike:12,Carp:18,PCatfish:1.2,PPike:0.95,PCarp:1.45
+Name:Dmitry,SecondName:Barabanov,Speacialization:Builder,Concrete:45,Brick:12,Cement:18,PConcrete:1.2,PBrick:0.95,PCement:1.45
+Name:Elizabeth,SecondName:Volynec,Speacialization:Butcher,Sausages:28,Barbecue:12,Meatballs:18,PSausages:1.2,PBarbecue:0.95,PMeatballs:1.45
+Name:Egorik,SecondName:Martini,Speacialization:FruitSeller,Apples:56,Pear:12,Orange:18,PApples:1.2,PPear:0.95,POrange:1.45
+
+
+
+
