@@ -39,7 +39,7 @@ void SHKeeper1(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Зимой ягоды дороже, будь аккуратнее! Цена выросла на 30%!"<<endl;
         price *= 1.3;
     }
-    if(ProductCount < ProductCount/2){
+    if(ProductCount < 100){
         price *= 0.95;
     }
     if(Keeper1->SaleTime == Hours){
@@ -59,7 +59,7 @@ void SHKeeper2(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Весной рыба дороже! Цена выросла на 25%!"<<endl;
         price *= 1.25;
     }
-    if(ProductCount < ProductCount/2){
+    if(ProductCount < 100){
         price *= 0.9;
     }
     if(Keeper2->SaleTime == Hours){
@@ -78,7 +78,7 @@ void SHKeeper3(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Летом на стройматериалы высокий спрос! Цена выросла на 40%!"<<endl;
         price *= 1.4;
     }
-    if(ProductCount < ProductCount/2){
+    if(ProductCount < 100){
         price *= 1.2;
     }
     if(Keeper3->SaleTime == Hours){
@@ -97,7 +97,7 @@ void SHKeeper4(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Осенью на мясо цена выше! Цена выросла на 15%!"<<endl;
         price *= 1.15;
     }
-    if(ProductCount < ProductCount/2){
+    if(ProductCount < 100){
         price *= 0.95;
     }
     if(Keeper4->SaleTime == Hours){
@@ -116,7 +116,7 @@ void SHKeeper5(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Зимой фрукты в дефиците! Цена выросла на 75%!"<<endl;
         price *= 1.75;
     }
-    if(ProductCount < ProductCount/2){
+    if(ProductCount < 100){
         price *= 1.35;
     }
     if(Keeper5->SaleTime == Hours){
