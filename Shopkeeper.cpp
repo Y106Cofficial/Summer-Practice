@@ -1,5 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
+#include <ctime>
+#include <string>
+#include <windows.h>
 
 using namespace std;
 
@@ -208,19 +212,184 @@ void FillInfo(){
     IFile.close();
 }
 
+void Credit_Info(int crd_info, int which_one_keeper, int final_gold){
+    ofstream OO;
+    ifstream II;
+    II.open("Inventory.txt");
+    OO.open("User_Inventory.txt");
+    string credit_info="m", gold_info, credit_dop_info;
+    int your_gold, gold_pos, total_price_int, credit_history_pos,j, credit_history;
+    float total_price_float;
+    for (int i = 1; !II.eof() && credit_info != ""; i++)
+    {
+        switch (i)
+        {
+        case 1:
+            getline(II,credit_info);
+            OO<<"Gold:"+to_string(final_gold)<<endl;
+        break;
+        case 2:
+            getline(II,credit_info);
+            credit_dop_info = credit_info;
+            credit_history_pos = credit_info.find(":")+1;
+            credit_info = credit_info.substr(credit_history_pos);
+            if (which_one_keeper == i-1)
+            {
+                credit_history = stoi(credit_info);
+                if (credit_history<5)
+                {
+                    credit_history++;
+                    OO<<"Credit_History_First_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+                else
+                {
+                    OO<<"Credit_History_First_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+            }
+            else
+            {
+                OO<<credit_dop_info<<endl;
+            }
+            break;
+            case 3:
+            getline(II,credit_info);
+            credit_dop_info = credit_info;
+            credit_history_pos = credit_info.find(":")+1;
+            credit_info = credit_info.substr(credit_history_pos);
+            if (which_one_keeper == i-1)
+            {
+                credit_history = stoi(credit_info);
+                if (credit_history<=5)
+                {
+                    credit_history ++;
+                    OO<<"Credit_History_Second_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+                else
+                {
+                    OO<<"Credit_History_Second_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+            }
+            else
+            {
+                OO<<credit_dop_info<<endl;
+            }
+            break;
+            case 4:
+            getline(II,credit_info);
+            credit_dop_info = credit_info;
+            credit_history_pos = credit_info.find(":")+1;
+            credit_info = credit_info.substr(credit_history_pos);
+            if (which_one_keeper == i-1)
+            {
+                credit_history = stoi(credit_info);
+                if (credit_history<5)
+                {
+                    credit_history ++;
+                    OO<<"Credit_History_Third_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+                else
+                {
+                    OO<<"Credit_History_Third_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+            }
+            else
+            {
+                OO<<credit_dop_info<<endl;
+            }
+            break;
+            case 5:
+            getline(II,credit_info);
+            credit_dop_info = credit_info;
+            credit_history_pos = credit_info.find(":")+1;
+            credit_info = credit_info.substr(credit_history_pos);
+            if (which_one_keeper == i-1)
+            {
+                credit_history = stoi(credit_info);
+                if (credit_history<5)
+                {
+                    credit_history ++;
+                    OO<<"Credit_History_Fourth_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+                else
+                {
+                    OO<<"Credit_History_Fourth_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+            }
+            else
+            {
+                OO<<credit_dop_info<<endl;
+            }
+            break;
+            case 6:
+            getline(II,credit_info);
+            credit_dop_info = credit_info;
+            credit_history_pos = credit_info.find(":")+1;
+            credit_info = credit_info.substr(credit_history_pos);
+            if (which_one_keeper == i-1)
+            {
+                credit_history = stoi(credit_info);
+                if (credit_history<5)
+                {
+                    credit_history ++;
+                    OO<<"Credit_History_Fifth_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+                else
+                {
+                    OO<<"Credit_History_Fifth_Shopkeeper:" + to_string(credit_history)<<endl;
+                }
+            }
+            else
+            {
+                OO<<credit_dop_info<<endl;
+            }
+            break;
+            case 7:
+            credit_info = "";
+            break;
+            }
+    }
+    II.close();
+    OO.close();
+    remove("Inventory.txt");
+    rename("User_Inventory.txt","Inventory.txt");
+}
+
 void Shopkeeper::Buy_Sell(int kolvo, Shopkeeper *Keeper, int whichKeeper, int whichProduct){
     FillInfo();
     string info="m", name, secondname, saletime, specialization, product1, product2, product3, countP1, countP2, countP3, price1, price2, price3, maska;
+    ofstream Ofile1, Ofile3;
+    ifstream Ifile1;
+    Ifile1.open("Inventory.txt");
+    int your_gold, gold_pos, total_price_int, credit_history_pos, credit_history;
+    float total_price_float;
+    string gold_info, credit_history_info;
+    getline(Ifile1,gold_info);
+    gold_pos = gold_info.find(":") + 1;
+    gold_info = gold_info.substr(gold_pos);
+    your_gold = stoi(gold_info);
+    Ifile1.close();
     switch (whichProduct)
     {
     case 1:
         Keeper->countP1 = Keeper->countP1 - kolvo;
+        total_price_float = Keeper->price1 * kolvo;
+        total_price_int = (int)total_price_float;
+        your_gold = your_gold - total_price_int;
+        Credit_Info(credit_history,whichKeeper,your_gold);
         break;
     case 2:
-        Keeper->countP1 = Keeper->countP2 - kolvo;
+        Keeper->countP2 = Keeper->countP2 - kolvo;
+        total_price_float = Keeper->price2 * kolvo;
+        total_price_int = (int)total_price_float;
+        your_gold = your_gold - total_price_int;
+        Credit_Info(credit_history,whichKeeper,your_gold);
         break;
     case 3:
-        Keeper->countP1 = Keeper->countP3 - kolvo;
+        Keeper->countP3 = Keeper->countP3 - kolvo;
+        total_price_float = Keeper->price2 * kolvo;
+        total_price_int = (int)total_price_float;
+        your_gold = your_gold - total_price_int;
+        Credit_Info(credit_history,whichKeeper,your_gold);
         break;
     }
     name = Keeper->name;
@@ -356,12 +525,125 @@ void goods_menu_of_fifth_shopkeeper(Shopkeeper fifth_shopkeeper)
         << "\tЦена: " << fifth_shopkeeper.price3 << endl << endl;
 }
 
+// Функции Димы
 
+void Get_Hours(int Hours){
+    SYSTEMTIME st;
+    while(true){
+    GetLocalTime(&st);
+        Hours = st.wHour;
+        Sleep(1000);
+        system("cls");
+    }
+}
+
+void SHKeeper1(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //ягоды
+
+    if(FirstShopkeeper.specialization == "BerryPicker" && Hours >=0 && Hours <=6){
+        cout<<"Зимой ягоды дороже, будь аккуратнее! Цена выросла на 30%!"<<endl;
+        price *= 1.3;
+    }
+    float credit = CreditHystory * 0.1;
+    if(ProductCount < 100){
+        price *= 0.95;
+    }
+    if(FirstShopkeeper.SaleTime == Hours){
+        cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
+        price *= (0.8-credit);
+    }
+    balance -= price;
+    cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
+    CreditHystory += 1;
+    cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет: "<<CreditHystory<<endl;
+    
+}
+
+void SHKeeper2(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //рыба
+
+    if(SecondShopkeeper.specialization == "Fisher" && Hours >=7 && Hours <=12){
+        cout<<"Весной рыба дороже! Цена выросла на 25%!"<<endl;
+        price *= 1.25;
+    }
+    if(ProductCount < 100){
+        price *= 0.9;
+    }
+    float credit = CreditHystory * 0.1;
+    if(SecondShopkeeper.SaleTime == Hours){
+        cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
+        price *= (0.8-credit);
+    }
+    balance -= price;
+    cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
+    CreditHystory += 1;
+    cout<<"Ваш рейтинг у данного продавца повышен на 0.02 и составляет: "<<CreditHystory<<endl;
+}
+
+void SHKeeper3(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //стройматериалы
+
+    if(ThirdShopkeeper.specialization == "Builder" && Hours >=13 && Hours <=18){
+        cout<<"Летом на стройматериалы высокий спрос! Цена выросла на 40%!"<<endl;
+        price *= 1.4;
+    }
+    if(ProductCount < 100){
+        price *= 1.2;
+    }
+    float credit = CreditHystory * 0.1;
+    if(ThirdShopkeeper.SaleTime == Hours){
+        cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
+        price *= (0.8-credit);
+    }
+    balance -= price;
+    cout<<"Я вижу, строитель ты, хе-хе. Уважаю таких ребят!"<<endl;
+    CreditHystory += 1;
+    cout<<"Ваш рейтинг у данного продавца повышен на 0.05 и составляет: "<<CreditHystory<<endl;
+}
+
+void SHKeeper4(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //мясо
+
+    if(FourthShopkeeper.specialization == "Butcher" && Hours >=19 && Hours <=24){
+        cout<<"Осенью на мясо цена выше! Цена выросла на 15%!"<<endl;
+        price *= 1.15;
+    }
+    if(ProductCount < 100){
+        price *= 0.95;
+    }
+    float credit = CreditHystory * 0.1;
+    if(FourthShopkeeper.SaleTime == Hours){
+        cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
+        price *= (0.8-credit);
+    }
+    balance -= price;
+    cout<<"Все люди хороши, лишь бы не вегетерианцы!"<<endl;
+    CreditHystory += 1;
+    cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет:"<<CreditHystory<<endl;
+}
+
+void SHKeeper5(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //фрукты
+
+    if(FifthShopkeeper.specialization == "FruitSeller" && Hours >=7 && Hours <=12){
+        cout<<"Зимой фрукты в дефиците! Цена выросла на 75%!"<<endl;
+        price *= 1.75;
+    }
+    if(ProductCount < 100){
+        price *= 1.35;
+    }
+    float credit = CreditHystory * 0.1;
+    if(FifthShopkeeper.SaleTime == Hours){
+        cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
+        price *= (0.8-credit);
+    }
+    balance -= price;
+    cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
+    CreditHystory += 1;
+    cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет:"<<CreditHystory<<endl;
+}
 
 int main(){
     FillInfo();
 
-    int which_one_product, which_one_shopkeeper;
+    int which_one_product, which_one_shopkeeper, hours;
+
+    Get_Hours(hours);
 
     cout << "\t\t\t\t\t\tДобро пожаловать на рынок Долбогномов!" << endl;
     cout << "\t\t\tУ нас самые честные продавцы с самыми свежими и качественными товарами. Отвечаю." << endl << endl;
@@ -398,6 +680,7 @@ int main(){
                     }
                     else
                     {
+                        // SHKeeper1(hours,)
                         FirstShopkeeper.Buy_Sell(how_many,&FirstShopkeeper,which_one_shopkeeper,which_one_product);
                         goods_menu();
                         first_choice = 0;
