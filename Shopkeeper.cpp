@@ -527,15 +527,13 @@ void goods_menu_of_fifth_shopkeeper(Shopkeeper fifth_shopkeeper)
 
 // Функции Димы
 
-void Get_Hours(int Hours){
-    SYSTEMTIME st;
-    while(true){
-    GetLocalTime(&st);
-        Hours = st.wHour;
-        Sleep(1000);
-        system("cls");
-    }
-}
+// void Get_Hours(int Hours){
+//     SYSTEMTIME st;
+//     GetLocalTime(&st);
+//         Hours = st.wHour;
+//         Sleep(1000);
+//         system("cls");
+// }
 
 void SHKeeper1(int Hours, float balance, float price, float CreditHystory, int ProductCount){   //ягоды
 
@@ -643,7 +641,7 @@ int main(){
 
     int which_one_product, which_one_shopkeeper, hours;
 
-    Get_Hours(hours);
+    // Get_Hours(hours);
 
     cout << "\t\t\t\t\t\tДобро пожаловать на рынок Долбогномов!" << endl;
     cout << "\t\t\tУ нас самые честные продавцы с самыми свежими и качественными товарами. Отвечаю." << endl << endl;

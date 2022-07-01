@@ -39,16 +39,17 @@ void SHKeeper1(int Hours, float balance, float price, float CreditHystory, int P
         cout<<"Зимой ягоды дороже, будь аккуратнее! Цена выросла на 30%!"<<endl;
         price *= 1.3;
     }
+    float credit = CreditHystory * 0.1;
     if(ProductCount < 100){
         price *= 0.95;
     }
     if(Keeper1->SaleTime == Hours){
         cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
-        price *= (0.8-CreditHystory);
+        price *= (0.8-credit);
     }
     balance -= price;
     cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
-    CreditHystory += 0.01;
+    CreditHystory += 1;
     cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет: "<<CreditHystory<<endl;
     
 }
@@ -62,13 +63,14 @@ void SHKeeper2(int Hours, float balance, float price, float CreditHystory, int P
     if(ProductCount < 100){
         price *= 0.9;
     }
+    float credit = CreditHystory * 0.1;
     if(Keeper2->SaleTime == Hours){
         cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
-        price *= (0.8-CreditHystory);
+        price *= (0.8-credit);
     }
     balance -= price;
     cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
-    CreditHystory += 0.02;
+    CreditHystory += 1;
     cout<<"Ваш рейтинг у данного продавца повышен на 0.02 и составляет: "<<CreditHystory<<endl;
 }
 
@@ -81,13 +83,14 @@ void SHKeeper3(int Hours, float balance, float price, float CreditHystory, int P
     if(ProductCount < 100){
         price *= 1.2;
     }
+    float credit = CreditHystory * 0.1;
     if(Keeper3->SaleTime == Hours){
         cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
-        price *= (0.8-CreditHystory);
+        price *= (0.8-credit);
     }
     balance -= price;
     cout<<"Я вижу, строитель ты, хе-хе. Уважаю таких ребят!"<<endl;
-    CreditHystory += 0.05;
+    CreditHystory += 1;
     cout<<"Ваш рейтинг у данного продавца повышен на 0.05 и составляет: "<<CreditHystory<<endl;
 }
 
@@ -100,17 +103,18 @@ void SHKeeper4(int Hours, float balance, float price, float CreditHystory, int P
     if(ProductCount < 100){
         price *= 0.95;
     }
+    float credit = CreditHystory * 0.1;
     if(Keeper4->SaleTime == Hours){
         cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
-        price *= (0.8-CreditHystory);
+        price *= (0.8-credit);
     }
     balance -= price;
     cout<<"Все люди хороши, лишь бы не вегетерианцы!"<<endl;
-    CreditHystory += 0.01;
+    CreditHystory += 1;
     cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет:"<<CreditHystory<<endl;
 }
 
-void SHKeeper5(int Hours, float balance, float price, float CreditHystory, int ProductCount){
+void SHKeeper5(int Hours, float balance, float price, float CreditHystory, int ProductCount){  
 
     if(Keeper5->specialization == "FruitSeller" && Hours >=7 && Hours <=12){
         cout<<"Зимой фрукты в дефиците! Цена выросла на 75%!"<<endl;
@@ -119,13 +123,14 @@ void SHKeeper5(int Hours, float balance, float price, float CreditHystory, int P
     if(ProductCount < 100){
         price *= 1.35;
     }
+    float credit = CreditHystory * 0.1;
     if(Keeper5->SaleTime == Hours){
         cout<<"Вы пришли в удачный момент, сейчас действует скидка 20%!";
-        price *= (0.8-CreditHystory);
+        price *= (0.8-credit);
     }
     balance -= price;
     cout<<"Cлушай, нормальный ты мужичок, запишу тебя в свою книжку, но только карандашом."<<endl;
-    CreditHystory += 0.01;
+    CreditHystory += 1;
     cout<<"Ваш рейтинг у данного продавца повышен на 0.01 и составляет:"<<CreditHystory<<endl;
 }
 
